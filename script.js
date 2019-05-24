@@ -19,11 +19,13 @@ window.addEventListener("load", ()=>{
             })
                 .then(data => {
             console.log(data);
-            const {temperature, summary} = data.currently;
+            const {temperature, summary, icon} = data.currently;
 
             temperatureDegree.textContent = temperature;
             mainLocation.textContent = data.timezone;
             temperatureDescription.textContent = summary;
+
+            setIcons(icon, document.querySelector(".icon"));
                 })
             })
 
@@ -31,5 +33,10 @@ window.addEventListener("load", ()=>{
         mainLocation.textContent = "please, allow your location";
     }
 
-    
+    function setIcons(icon, iconID) {
+        const skycons = new Skycons({color: "white"});
+        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
+    }
 });
