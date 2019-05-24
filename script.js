@@ -5,6 +5,8 @@ window.addEventListener("load", ()=>{
     let mainLocation = document.querySelector(".location");
     let temperatureDescription = document.querySelector(".temperature-description");
     let temperatureDegree = document.querySelector(".temperature-degree");
+    let btn = document.querySelector(".btn");
+    let tempSpan = document.querySelector(".degree span");
 
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position =>{
@@ -26,6 +28,7 @@ window.addEventListener("load", ()=>{
             temperatureDescription.textContent = summary;
 
             setIcons(icon, document.querySelector(".icon"));
+            btn.addEventListener("click", changeToF);
                 })
             })
 
@@ -36,7 +39,14 @@ window.addEventListener("load", ()=>{
     function setIcons(icon, iconID) {
         const skycons = new Skycons({color: "white"});
         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        //skycon animation
         skycons.play();
         return skycons.set(iconID, Skycons[currentIcon]);
+    }
+
+    function changeToF(){
+        if(tempSpan.innerHTML == "&#8451;"){
+            tempSpan.innerHTML == "&#8457;"
+        }
     }
 });
