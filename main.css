@@ -17,7 +17,7 @@ body{
 
 .location-timezon, .temperature{
     height: 30vh;
-    widows: 50%;
+    width: 50%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -30,6 +30,7 @@ body{
 .degree{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .degree span {
