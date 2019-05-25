@@ -23,9 +23,13 @@ window.addEventListener("load", ()=>{
             console.log(data);
             const {temperature, summary, icon} = data.currently;
 
-            temperatureDegree.textContent = temperature;
+            const celsius = (temperature - 32) * (5 / 9);
+
+            temperatureDegree.textContent = Math.floor(celsius);
             mainLocation.textContent = data.timezone;
             temperatureDescription.textContent = summary;
+        
+
 
             setIcons(icon, document.querySelector(".icon"));
             btn.addEventListener("click", changeToF);
@@ -45,8 +49,16 @@ window.addEventListener("load", ()=>{
     }
 
     function changeToF(){
-        if(tempSpan.innerHTML == "&#8451;"){
-            tempSpan.innerHTML == "&#8457;"
+
+        if(tempSpan.innerHTML.charCodeAt(0) == 8451){
+            tempSpan.innerHTML = "&#8457;"
+            temperatureDegree.textContent = temperature;
+            
+        } else {
+            tempSpan.innerHTML = "&#8451"
         }
+
+        
+
     }
 });
